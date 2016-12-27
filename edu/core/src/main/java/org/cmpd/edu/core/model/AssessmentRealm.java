@@ -1,4 +1,4 @@
-package org.cmpd.edu.view.core.model;
+package org.cmpd.edu.core.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Created by ovoievodin on 27.12.2016.
  */
 @Document(collection = "AssesmentRealm")
-public class AssesmentRealm {
+public class AssessmentRealm {
     private String name;
     private String id;
     private AssessmentRealmType type;

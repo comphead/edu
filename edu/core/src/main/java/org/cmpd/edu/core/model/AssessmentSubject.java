@@ -1,4 +1,4 @@
-package org.cmpd.edu.view.core.model;
+package org.cmpd.edu.core.model;
 
 import org.springframework.data.annotation.Id;
 
