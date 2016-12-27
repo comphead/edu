@@ -1,8 +1,8 @@
-package org.cmpd.edu.core.service.mongo;
+package org.cmpd.edu.view.core.service.mongo;
 
 import org.cmpd.edu.core.model.EducationEntity;
-import org.cmpd.edu.core.repository.mongo.EducationEntityRepository;
-import org.cmpd.edu.core.service.EducationEntityService;
+import org.cmpd.edu.view.core.repository.mongo.EducationEntityRepository;
+import org.cmpd.edu.view.core.service.EducationEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

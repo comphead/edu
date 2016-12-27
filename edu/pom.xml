@@ -14,5 +14,6 @@
 	<modules>
 		<module>core</module>
 		<module>dataupload</module>
+		<module>assessmentview</module>
 	</modules>
 </project>

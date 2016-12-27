@@ -1,4 +1,4 @@
-package org.cmpd.edu.core.service;
+package org.cmpd.edu.view.core.service;
 
 import org.cmpd.edu.core.model.EducationEntity;
 

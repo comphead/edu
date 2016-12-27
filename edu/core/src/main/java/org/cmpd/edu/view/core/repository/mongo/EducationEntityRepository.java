@@ -1,4 +1,4 @@
-package org.cmpd.edu.core.repository.mongo;
+package org.cmpd.edu.view.core.repository.mongo;
 
 import org.cmpd.edu.core.model.EducationEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;

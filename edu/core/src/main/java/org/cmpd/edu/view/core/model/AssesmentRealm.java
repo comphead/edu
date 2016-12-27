@@ -1,4 +1,4 @@
-package org.cmpd.edu.core.model;
+package org.cmpd.edu.view.core.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -6,10 +6,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Created by ovoievodin on 27.12.2016.
  */
-@Document(collection = "EducationEntity")
-public class EducationEntity {
+@Document(collection = "AssesmentRealm")
+public class AssesmentRealm {
     private String name;
     private String id;
+    private AssessmentRealmType type;
 
     public String getName() {
         return name;
@@ -26,5 +27,17 @@ public class EducationEntity {
     @Id
     public void setId(String id) {
         this.id = id;
+    }
+
+    public AssessmentRealmType getType() {
+        return type;
+    }
+
+    public void setType(AssessmentRealmType type) {
+        this.type = type;
+    }
+
+    public enum AssessmentRealmType {
+        EDU
     }
 }

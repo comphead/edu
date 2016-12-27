@@ -1,4 +1,4 @@
-package org.cmpd.edu;
+package org.cmpd.edu.view;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
