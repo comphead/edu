@@ -1,7 +1,13 @@
 package org.cmpd.edu.upload.ws;
 
+import org.cmpd.edu.core.model.AssessmentAction;
+import org.cmpd.edu.core.service.AssessmentUploadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by ovoievodin on 26.12.2016.
@@ -9,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DataUploadResource {
 
-    @RequestMapping("/test")
-    public void upload() {
+    @Autowired
+    private AssessmentUploadService assessmentUploadService;
 
+    @RequestMapping(value = "/uploadActions", method = RequestMethod.POST)
+    public void upload(List<AssessmentAction> actions) {
+        assessmentUploadService.upload(actions);
     }
 }

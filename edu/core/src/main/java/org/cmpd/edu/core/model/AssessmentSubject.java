@@ -1,51 +1,16 @@
 package org.cmpd.edu.core.model;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by ovoievodin on 27.12.2016.
  */
-public class AssessmentSubject {
-    private String id;
-    private String firstName;
-    private String secondName;
-    private String lastName;
+@Document(collection = "Subject")
+public class AssessmentSubject extends Person {
+
     private String extra1;
     private String extra2;
     private String extra3;
-
-    public String getId() {
-        return id;
-    }
-
-    @Id
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getExtra1() {
         return extra1;
