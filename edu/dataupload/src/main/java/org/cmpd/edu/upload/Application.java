@@ -8,14 +8,12 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
 @ComponentScan(basePackages = "org.cmpd.edu")
 @EnableAutoConfiguration
 @EnableMongoRepositories(basePackages = "org.cmpd.edu")
-@EnableMongoAuditing()
 @Import(value = {AssessmentUploadServiceMongo.class})
 public class Application extends SpringBootServletInitializer {
 
