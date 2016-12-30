@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 @ComponentScan(basePackages = "org.cmpd.edu")
 @EnableAutoConfiguration
-@EnableMongoRepositories(basePackages = "org.cmpd.edu")
+@EnableMongoRepositories(basePackages = "org.cmpd.edu.core.repository.mongo")
 @Import(value = {AssessmentUploadServiceMongo.class})
 public class Application extends SpringBootServletInitializer {
 

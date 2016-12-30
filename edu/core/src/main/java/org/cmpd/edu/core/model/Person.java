@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
  */
 public class Person {
     private String id;
+    private String localId;
     private String firstName;
     private String secondName;
     private String lastName;
@@ -42,5 +43,13 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getLocalId() {
+        return localId;
+    }
+
+    public void setLocalId(String localId) {
+        this.localId = localId;
     }
 }

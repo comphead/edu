@@ -1,5 +1,6 @@
 package org.cmpd.edu.core.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,6 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "action")
 public class AssessmentAction {
+    @Id
+    private String id;
+
     @DBRef
     private AssessmentInspector inspector;
     @DBRef
@@ -55,5 +59,13 @@ public class AssessmentAction {
 
     public void setRealm(AssessmentRealm realm) {
         this.realm = realm;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

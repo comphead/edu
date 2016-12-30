@@ -20,4 +20,9 @@ public class AssessmentUploadServiceMongo implements AssessmentUploadService{
     public void upload(List<AssessmentAction> actions) {
         assessmentMongoRepository.insert(actions);
     }
+
+    @Override
+    public List<AssessmentAction> getAllActions() {
+        return assessmentMongoRepository.findAll();
+    }
 }

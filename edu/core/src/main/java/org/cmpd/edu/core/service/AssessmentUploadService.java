@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface AssessmentUploadService {
     void upload(List<AssessmentAction> actions);
+
+    List<AssessmentAction> getAllActions();
 }

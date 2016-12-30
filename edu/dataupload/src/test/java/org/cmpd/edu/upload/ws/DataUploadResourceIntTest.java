@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.http.MockHttpOutputMessage;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,6 +25,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 /**
@@ -70,8 +72,13 @@ public class DataUploadResourceIntTest {
     }
 
     @Test
+    @Commit
     public void testUpload() throws Exception {
-        mockMvc.perform(post("/uploadActions").contentType(MediaType.APPLICATION_JSON).content(json(createAssesmentActionsList())));
+        mockMvc.perform(
+                post("/uploadActions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json(createAssesmentActionsList())))
+                .andExpect(status().isOk());
 
 //        ObjectMapper mapper = new ObjectMapper();
 //
@@ -100,17 +107,20 @@ public class DataUploadResourceIntTest {
         inspector.setFirstName("Name1");
         inspector.setSecondName("Name2");
         inspector.setLastName("Name3");
+        inspector.setId("XX123456");
         action1.setInspector(inspector);
 
         AssessmentRealm realm = new AssessmentRealm();
         realm.setName("s303");
         realm.setType(AssessmentRealm.AssessmentRealmType.EDU);
+        realm.setId("s303_kiev");
         action1.setRealm(realm);
 
         AssessmentSubject subject = new AssessmentSubject();
         subject.setFirstName("NameS1");
         subject.setSecondName("NameS2");
         subject.setLastName("NameS3");
+        subject.setId("XX654321");
         action1.setSubject(subject);
 
         AssessmentAction action2 = new AssessmentAction();
@@ -125,17 +135,20 @@ public class DataUploadResourceIntTest {
         inspector2.setFirstName("Name1");
         inspector2.setSecondName("Name2");
         inspector2.setLastName("Name3");
+        inspector2.setId("XX123456");
         action2.setInspector(inspector2);
 
         AssessmentRealm realm2 = new AssessmentRealm();
         realm2.setName("s303");
         realm2.setType(AssessmentRealm.AssessmentRealmType.EDU);
+        realm2.setId("s303_kiev");
         action2.setRealm(realm2);
 
         AssessmentSubject subject2 = new AssessmentSubject();
         subject2.setFirstName("NameS1");
         subject2.setSecondName("NameS2");
         subject2.setLastName("NameS3");
+        subject2.setId("XX654321");
         action2.setSubject(subject2);
 
         result.add(action1);
