@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 /**
  * Created by ovoievodin on 28.12.2016.
  */
@@ -20,6 +22,8 @@ public class AssessmentAction {
     private Assessment assessment;
     @DBRef
     private AssessmentRealm realm;
+    private LocalDate actionTime = LocalDate.now();
+    private AssessmentActionStatus status;
 
     public AssessmentInspector getInspector() {
         return inspector;
@@ -67,5 +71,26 @@ public class AssessmentAction {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public LocalDate getActionTime() {
+        return actionTime;
+    }
+
+    public void setActionTime(LocalDate actionTime) {
+        this.actionTime = actionTime;
+    }
+
+    public AssessmentActionStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AssessmentActionStatus status) {
+        this.status = status;
+    }
+
+    public enum AssessmentActionStatus {
+        ACTIVE,
+        CANCELLED
     }
 }

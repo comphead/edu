@@ -9,7 +9,7 @@ import java.util.Map;
 public class AssessmentProperties {
     public static final String CLASS = "CLASS";
     public static final String MATERIAL = "MATERIAL";
-    public static final String CREATED_DATE = "CREATED_DATE";
+    public static final String ASSESSMENT_DATE = "ASSESSMENT_DATE";
     private Map<String, Object> props;
 
     public void put(String key, Object value) {
