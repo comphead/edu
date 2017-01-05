@@ -1,6 +1,6 @@
 package org.cmpd.edu.upload.ws;
 
-import org.cmpd.edu.core.model.*;
+import org.cmpd.edu.model.*;
 import org.cmpd.edu.upload.Application;
 import org.junit.Before;
 import org.junit.Test;

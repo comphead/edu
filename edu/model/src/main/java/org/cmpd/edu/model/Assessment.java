@@ -1,4 +1,4 @@
-package org.cmpd.edu.core.model;
+package org.cmpd.edu.model;
 
 /**
  * Created by ovoievodin on 27.12.2016.

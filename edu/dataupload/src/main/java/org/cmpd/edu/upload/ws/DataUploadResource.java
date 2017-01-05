@@ -1,7 +1,7 @@
 package org.cmpd.edu.upload.ws;
 
-import org.cmpd.edu.core.model.AssessmentAction;
 import org.cmpd.edu.core.service.AssessmentUploadService;
+import org.cmpd.edu.model.AssessmentAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

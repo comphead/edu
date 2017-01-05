@@ -1,6 +1,6 @@
 package org.cmpd.edu.core.repository.mongo;
 
-import org.cmpd.edu.core.model.AssessmentSubject;
+import org.cmpd.edu.model.AssessmentSubject;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

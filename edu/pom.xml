@@ -12,6 +12,7 @@
 	<description>Education Rate Workflow</description>
 
 	<modules>
+		<module>model</module>
 		<module>core</module>
 		<module>dataupload</module>
 		<module>assessmentview</module>

@@ -1,4 +1,5 @@
-package org.cmpd.edu.core.model;
+package org.cmpd.edu.model;
+
 
 import java.util.HashMap;
 import java.util.Map;

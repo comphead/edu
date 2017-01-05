@@ -1,4 +1,4 @@
-package org.cmpd.edu.core.model;
+package org.cmpd.edu.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;

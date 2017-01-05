@@ -1,6 +1,6 @@
 package org.cmpd.edu.core.service;
 
-import org.cmpd.edu.core.model.AssessmentRealm;
+import org.cmpd.edu.model.AssessmentRealm;
 
 import java.util.List;
 

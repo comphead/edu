@@ -1,8 +1,8 @@
 package org.cmpd.edu.core.service.mongo;
 
-import org.cmpd.edu.core.model.AssessmentAction;
 import org.cmpd.edu.core.repository.mongo.AssessmentActionMongoRepository;
 import org.cmpd.edu.core.service.AssessmentUploadService;
+import org.cmpd.edu.model.AssessmentAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

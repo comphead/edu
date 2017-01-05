@@ -1,6 +1,6 @@
 package org.cmpd.edu.core.service;
 
-import org.cmpd.edu.core.model.AssessmentAction;
+import org.cmpd.edu.model.AssessmentAction;
 
 import java.util.List;
 
