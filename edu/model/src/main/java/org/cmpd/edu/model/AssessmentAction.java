@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Created by ovoievodin on 28.12.2016.
@@ -22,7 +23,7 @@ public class AssessmentAction {
     private Assessment assessment;
     @DBRef
     private AssessmentRealm realm;
-    private LocalDate actionTime = LocalDate.now();
+    private Date actionTime = new Date();
     private AssessmentActionStatus status;
 
     public AssessmentInspector getInspector() {
@@ -73,11 +74,11 @@ public class AssessmentAction {
         this.id = id;
     }
 
-    public LocalDate getActionTime() {
+    public Date getActionTime() {
         return actionTime;
     }
 
-    public void setActionTime(LocalDate actionTime) {
+    public void setActionTime(Date actionTime) {
         this.actionTime = actionTime;
     }
 
