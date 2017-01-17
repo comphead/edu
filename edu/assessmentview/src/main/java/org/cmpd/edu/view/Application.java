@@ -1,6 +1,6 @@
 package org.cmpd.edu.view;
 
-import org.cmpd.edu.core.service.mongo.AssessmentUploadServiceMongo;
+import org.cmpd.edu.core.service.mongo.AssessmentViewServiceMongo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Configuration
-@ComponentScan(basePackages = "org.cmpd.edu.core.repository.mongo")
+@ComponentScan(basePackages = "org.cmpd.edu")
 @EnableAutoConfiguration
-@EnableMongoRepositories(basePackages = "org.cmpd.edu")
-@Import(value = {AssessmentUploadServiceMongo.class})
+@EnableMongoRepositories(basePackages = "org.cmpd.edu.core.repository.mongo")
+@Import(value = {AssessmentViewServiceMongo.class})
 public class Application extends SpringBootServletInitializer {
 
 	private static Class<Application> applicationClass = Application.class;

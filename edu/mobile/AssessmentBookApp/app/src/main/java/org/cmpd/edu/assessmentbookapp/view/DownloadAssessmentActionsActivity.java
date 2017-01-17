@@ -84,6 +84,7 @@ public class DownloadAssessmentActionsActivity
      * Initialize the View fields.
      */
     private void initializeViewFields() {
+
     }
 
     /**

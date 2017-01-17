@@ -1,9 +1,10 @@
 package org.cmpd.edu.view.ws;
 
-import org.cmpd.edu.core.service.AssessmentUploadService;
+import org.cmpd.edu.core.service.AssessmentViewService;
 import org.cmpd.edu.model.AssessmentAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,10 +16,10 @@ import java.util.List;
 public class AssessmentViewResource {
 
     @Autowired
-    private AssessmentUploadService assessmentUploadService;
+    private AssessmentViewService assessmentViewService;
 
-    @RequestMapping("/actions")
+    @RequestMapping(value = "/actions", method = RequestMethod.GET)
     public List<AssessmentAction> getAssessmentActions() {
-        return assessmentUploadService.getAllActions();
+        return assessmentViewService.getAllActions();
     }
 }

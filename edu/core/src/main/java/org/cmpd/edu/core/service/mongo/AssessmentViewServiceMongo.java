@@ -1,23 +1,21 @@
 package org.cmpd.edu.core.service.mongo;
 
 import org.cmpd.edu.core.repository.mongo.AssessmentActionMongoRepository;
-import org.cmpd.edu.core.service.AssessmentUploadService;
+import org.cmpd.edu.core.service.AssessmentViewService;
 import org.cmpd.edu.model.AssessmentAction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by ovoievodin on 28.12.2016.
+ * Created by ovoievodin on 17.01.2017.
  */
-@Service
-public class AssessmentUploadServiceMongo implements AssessmentUploadService{
+public class AssessmentViewServiceMongo implements AssessmentViewService {
     @Autowired
     private AssessmentActionMongoRepository assessmentMongoRepository;
 
     @Override
-    public void upload(List<AssessmentAction> actions) {
-        assessmentMongoRepository.insert(actions);
+    public List<AssessmentAction> getAllActions() {
+        return assessmentMongoRepository.findAll();
     }
 }
