@@ -12,28 +12,20 @@ import java.util.List;
 
 public interface MVP {
 
-    public interface RequiredViewOps
-           extends ContextView {
-
-        void reportRequestFailure(Uri url,
-                                   boolean processComplete);
+    interface RequiredViewOps extends ContextView {
+        void reportRequestFailure(Throwable t);
         void displayResults(Uri url);
     }
 
-    public interface ProvidedPresenterOps
-           extends PresenterOps<RequiredViewOps> {
+    interface ProvidedPresenterOps extends PresenterOps<RequiredViewOps> {
         void startProcessing();
     }
 
-    public interface RequiredPresenterOps
-           extends ContextView {
-        void onProcessingComplete(Uri url,
-                                  Uri pathToImageFile);
+    interface RequiredPresenterOps extends ContextView {
+        void onProcessingComplete(Uri url, Uri pathToImageFile);
     }
 
-    public interface ProvidedModelOps
-           extends ModelOps<RequiredPresenterOps> {
-         List<AssessmentAction> downloadActions(Context context,
-                                              Uri url);
+    interface ProvidedModelOps extends ModelOps<RequiredPresenterOps> {
+        List<AssessmentAction> downloadActions(Context context, Uri url);
     }
 }

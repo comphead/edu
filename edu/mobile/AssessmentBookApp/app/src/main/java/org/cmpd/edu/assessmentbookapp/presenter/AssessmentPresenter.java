@@ -2,19 +2,24 @@ package org.cmpd.edu.assessmentbookapp.presenter;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Environment;
-import android.os.Looper;
-import android.os.Message;
-import android.util.Pair;
 
 import org.cmpd.edu.assessmentbookapp.MVP;
+import org.cmpd.edu.assessmentbookapp.R;
 import org.cmpd.edu.assessmentbookapp.common.GenericPresenter;
+import org.cmpd.edu.assessmentbookapp.common.GenericSingleton;
+import org.cmpd.edu.assessmentbookapp.integration.AssessmentAPI;
+import org.cmpd.edu.assessmentbookapp.integration.GenericRetrofitService;
+import org.cmpd.edu.assessmentbookapp.integration.RetrofitClient;
 import org.cmpd.edu.assessmentbookapp.model.AssessmentDownloadsModel;
+import org.cmpd.edu.model.AssessmentAction;
 
 import java.lang.ref.WeakReference;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * This class defines all the image-related operations.  It implements
@@ -33,38 +38,15 @@ public class AssessmentPresenter
      * Used to enable garbage collection.
      */
     private WeakReference<MVP.RequiredViewOps> mView;
-    	
-    /**
-     * Stores the running total number of images downloaded that must
-     * be handled by ServiceResultHandler.
-     */
-    private int mNumImagesToHandle;
-    
-    /**
-     * Stores the running total number of images that have been
-     * handled by the ServiceResultHandler.
-     */
-    private int mNumImagesHandled;
-    
-    /**
-     * Stores the directory to be used for all downloaded images.
-     */
-    private Uri mDirectoryPathname = null;
-    
-    /**
-     * Array of Strings that represent the valid URLs that have
-     * been entered.
-     */
-    private ArrayList<Uri> mUrlList;
-
-    private android.os.Handler mHandler;
+    private Retrofit client;
 
     /**
      * Constructor will choose either the Started Service or Bound
      * Service implementation of AssessmentPresenter.
      */
     public AssessmentPresenter() {
-
+        client = GenericSingleton.instance(RetrofitClient.class)
+                .getInstance(this.getApplicationContext().getString(R.string.view_server));
     }
 
     /**
@@ -80,37 +62,6 @@ public class AssessmentPresenter
     public void onCreate(MVP.RequiredViewOps view) {
         // Set the WeakReference.
         mView = new WeakReference<>(view);
-
-        // Create a timestamp that will be unique.
-        final String timestamp =
-            new SimpleDateFormat("yyyyMMdd'_'HHmm").format(new Date());
-
-        // Use the timestamp to create a pathname for the
-        // directory that stores downloaded images.
-        mDirectoryPathname = 
-            Uri.parse(Environment.getExternalStoragePublicDirectory
-                      (Environment.DIRECTORY_DCIM)
-                      + "/" 
-                      + timestamp 
-                      + "/");
-        
-        // Initialize the list of URLs.
-        mUrlList = new ArrayList<Uri>();
-
-        mHandler = new android.os.Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message inputMessage) {
-                switch (inputMessage.what) {
-                    case 1 :
-                        Pair<Uri, Uri> pair = (Pair<Uri, Uri>) inputMessage.obj;
-                        onProcessingComplete(pair.first, pair.second);
-                        break;
-                    default :
-                        super.handleMessage(inputMessage);
-                }
-            }
-        };
-
 
         // Finish the initialization steps.
         resetFields();
@@ -160,7 +111,19 @@ public class AssessmentPresenter
      */
     @Override
     public void startProcessing() {
+        GenericRetrofitService<AssessmentAPI> service = new GenericRetrofitService(client);
+        Call<List<AssessmentAction>> call = service.getInstance().getAssessmentActions();
+        call.enqueue(new Callback<List<AssessmentAction>>() {
+            @Override
+            public void onResponse(Call<List<AssessmentAction>> call, Response<List<AssessmentAction>> response) {
 
+            }
+
+            @Override
+            public void onFailure(Call<List<AssessmentAction>> call, Throwable t) {
+                mView.get().reportRequestFailure(t);
+            }
+        });
     }
 
     /**
@@ -175,17 +138,11 @@ public class AssessmentPresenter
     /**
      * Returns true if all the downloads have completed, else false.
      */
-    private boolean allDownloadsComplete() {
-        return mNumImagesHandled == mNumImagesToHandle
-            && mNumImagesHandled > 0;
-    }
+
 
     /**
      * Returns true if there are any downloads in progress, else false.
      */
-    private boolean downloadsInProgress() {
-        return mNumImagesToHandle > 0;
-    }
 
     /**
      * Return the Activity context.

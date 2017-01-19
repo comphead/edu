@@ -98,11 +98,8 @@ public class DownloadAssessmentActionsActivity
     }
 
     @Override
-    public void reportRequestFailure(Uri url, boolean processComplete) {
-        Utils.showToast(this,
-                "image at "
-                        + url.toString()
-                        + " failed to download!");
+    public void reportRequestFailure(Throwable t) {
+        Utils.showToast(this, t.getMessage());
     }
 
     @Override
