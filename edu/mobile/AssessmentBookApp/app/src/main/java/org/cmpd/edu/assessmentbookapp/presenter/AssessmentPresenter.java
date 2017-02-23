@@ -8,10 +8,11 @@ import org.cmpd.edu.assessmentbookapp.R;
 import org.cmpd.edu.assessmentbookapp.common.GenericPresenter;
 import org.cmpd.edu.assessmentbookapp.common.GenericSingleton;
 import org.cmpd.edu.assessmentbookapp.integration.AssessmentAPI;
-import org.cmpd.edu.assessmentbookapp.integration.GenericRetrofitService;
 import org.cmpd.edu.assessmentbookapp.integration.RetrofitClient;
+import org.cmpd.edu.assessmentbookapp.integration.StaticDataAPI;
 import org.cmpd.edu.assessmentbookapp.model.AssessmentDownloadsModel;
 import org.cmpd.edu.model.AssessmentAction;
+import org.cmpd.edu.model.StaticDataContainer;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -45,8 +46,6 @@ public class AssessmentPresenter
      * Service implementation of AssessmentPresenter.
      */
     public AssessmentPresenter() {
-        client = GenericSingleton.instance(RetrofitClient.class)
-                .getInstance(this.getApplicationContext().getString(R.string.view_server));
     }
 
     /**
@@ -62,6 +61,8 @@ public class AssessmentPresenter
     public void onCreate(MVP.RequiredViewOps view) {
         // Set the WeakReference.
         mView = new WeakReference<>(view);
+        client = GenericSingleton.instance(RetrofitClient.class)
+                .getInstance(this.getActivityContext().getString(R.string.view_server));
 
         // Finish the initialization steps.
         resetFields();
@@ -111,9 +112,8 @@ public class AssessmentPresenter
      */
     @Override
     public void startProcessing() {
-        GenericRetrofitService<AssessmentAPI> service = new GenericRetrofitService(client);
-        Call<List<AssessmentAction>> call = service.getInstance().getAssessmentActions();
-        call.enqueue(new Callback<List<AssessmentAction>>() {
+        Call<List<AssessmentAction>> assessmentCall = client.create(AssessmentAPI.class).getAssessmentActions();
+        assessmentCall.enqueue(new Callback<List<AssessmentAction>>() {
             @Override
             public void onResponse(Call<List<AssessmentAction>> call, Response<List<AssessmentAction>> response) {
 
@@ -121,6 +121,19 @@ public class AssessmentPresenter
 
             @Override
             public void onFailure(Call<List<AssessmentAction>> call, Throwable t) {
+                mView.get().reportRequestFailure(t);
+            }
+        });
+
+        Call<StaticDataContainer> staticDataCall = client.create(StaticDataAPI.class).getStaticDataContainer();
+        staticDataCall.enqueue(new Callback<StaticDataContainer>() {
+            @Override
+            public void onResponse(Call<StaticDataContainer> call, Response<StaticDataContainer> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<StaticDataContainer> call, Throwable t) {
                 mView.get().reportRequestFailure(t);
             }
         });

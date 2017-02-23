@@ -7,6 +7,5 @@ import java.util.List;
 /**
  * Created by ovoievodin on 28.12.2016.
  */
-public interface AssessmentUploadService {
-    void upload(List<AssessmentAction> actions);
+public interface AssessmentUploadService extends GenericUploadService<List<AssessmentAction>> {
 }

@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNotNull;
@@ -79,11 +80,16 @@ public class DataUploadResourceIntTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json(createAssesmentActionsList())))
                 .andExpect(status().isOk());
+    }
 
-//        ObjectMapper mapper = new ObjectMapper();
-//
-//        HttpEntity<String> postBody = new HttpEntity<>(mapper.writeValueAsString(createAssesmentActionsList()));
-//        template.postForObject(base + "uploadActions", postBody, String.class);
+    @Test
+    @Commit
+    public void testUploadStaticData() throws Exception {
+        mockMvc.perform(
+                post("/uploadStatic")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json(createStaticData())))
+                .andExpect(status().isOk());
     }
 
     protected String json(Object o) throws IOException {
@@ -91,6 +97,32 @@ public class DataUploadResourceIntTest {
         this.mappingJackson2HttpMessageConverter.write(
                 o, MediaType.APPLICATION_JSON, mockHttpOutputMessage);
         return mockHttpOutputMessage.getBodyAsString();
+    }
+
+    private StaticDataContainer createStaticData() {
+        AssessmentInspector inspector = new AssessmentInspector();
+        inspector.setFirstName("Name1");
+        inspector.setSecondName("Name2");
+        inspector.setLastName("Name3");
+        inspector.setId("XX123456");
+
+        AssessmentRealm realm = new AssessmentRealm();
+        realm.setName("s303");
+        realm.setType(AssessmentRealm.AssessmentRealmType.EDU);
+        realm.setId("s303_kiev");
+
+        AssessmentSubject subject = new AssessmentSubject();
+        subject.setFirstName("NameS1");
+        subject.setSecondName("NameS2");
+        subject.setLastName("NameS3");
+        subject.setId("XX654321");
+
+        StaticDataContainer dataContainer = new StaticDataContainer();
+        dataContainer.setSubjects(Collections.singletonList(subject));
+        dataContainer.setInspectors(Collections.singletonList(inspector));
+        dataContainer.setRealms(Collections.singletonList(realm));
+
+        return dataContainer;
     }
 
     private List<AssessmentAction> createAssesmentActionsList() {
@@ -104,22 +136,22 @@ public class DataUploadResourceIntTest {
         action1.setAssessment(assessment);
 
         AssessmentInspector inspector = new AssessmentInspector();
-        inspector.setFirstName("Name1");
-        inspector.setSecondName("Name2");
-        inspector.setLastName("Name3");
+//        inspector.setFirstName("Name1");
+//        inspector.setSecondName("Name2");
+//        inspector.setLastName("Name3");
         inspector.setId("XX123456");
         action1.setInspector(inspector);
 
         AssessmentRealm realm = new AssessmentRealm();
-        realm.setName("s303");
-        realm.setType(AssessmentRealm.AssessmentRealmType.EDU);
+//        realm.setName("s303");
+//        realm.setType(AssessmentRealm.AssessmentRealmType.EDU);
         realm.setId("s303_kiev");
         action1.setRealm(realm);
 
         AssessmentSubject subject = new AssessmentSubject();
-        subject.setFirstName("NameS1");
-        subject.setSecondName("NameS2");
-        subject.setLastName("NameS3");
+//        subject.setFirstName("NameS1");
+//        subject.setSecondName("NameS2");
+//        subject.setLastName("NameS3");
         subject.setId("XX654321");
         action1.setSubject(subject);
 
@@ -132,22 +164,22 @@ public class DataUploadResourceIntTest {
         action2.setAssessment(assessment2);
 
         AssessmentInspector inspector2 = new AssessmentInspector();
-        inspector2.setFirstName("Name1");
-        inspector2.setSecondName("Name2");
-        inspector2.setLastName("Name3");
+//        inspector2.setFirstName("Name1");
+//        inspector2.setSecondName("Name2");
+//        inspector2.setLastName("Name3");
         inspector2.setId("XX123456");
         action2.setInspector(inspector2);
 
         AssessmentRealm realm2 = new AssessmentRealm();
-        realm2.setName("s303");
-        realm2.setType(AssessmentRealm.AssessmentRealmType.EDU);
+//        realm2.setName("s303");
+//        realm2.setType(AssessmentRealm.AssessmentRealmType.EDU);
         realm2.setId("s303_kiev");
         action2.setRealm(realm2);
 
         AssessmentSubject subject2 = new AssessmentSubject();
-        subject2.setFirstName("NameS1");
-        subject2.setSecondName("NameS2");
-        subject2.setLastName("NameS3");
+//        subject2.setFirstName("NameS1");
+//        subject2.setSecondName("NameS2");
+//        subject2.setLastName("NameS3");
         subject2.setId("XX654321");
         action2.setSubject(subject2);
 

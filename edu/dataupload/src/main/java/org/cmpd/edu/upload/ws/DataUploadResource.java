@@ -1,7 +1,9 @@
 package org.cmpd.edu.upload.ws;
 
 import org.cmpd.edu.core.service.AssessmentUploadService;
+import org.cmpd.edu.core.service.StaticDataUploadService;
 import org.cmpd.edu.model.AssessmentAction;
+import org.cmpd.edu.model.StaticDataContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +21,16 @@ public class DataUploadResource {
     @Autowired
     private AssessmentUploadService assessmentUploadService;
 
+    @Autowired
+    private StaticDataUploadService staticDataUploadService;
+
     @RequestMapping(value = "/uploadActions", method = RequestMethod.POST)
     public void upload(@RequestBody  List<AssessmentAction> actions) {
         assessmentUploadService.upload(actions);
+    }
+
+    @RequestMapping(value = "/uploadStatic", method = RequestMethod.POST)
+    public void uploadStatic(@RequestBody StaticDataContainer dataContainer) {
+        staticDataUploadService.upload(dataContainer);
     }
 }

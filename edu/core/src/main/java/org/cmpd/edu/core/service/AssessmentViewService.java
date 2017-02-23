@@ -7,6 +7,5 @@ import java.util.List;
 /**
  * Created by ovoievodin on 17.01.2017.
  */
-public interface AssessmentViewService {
-    List<AssessmentAction> getAllActions();
+public interface AssessmentViewService extends GenericViewService<List<AssessmentAction>>{
 }
