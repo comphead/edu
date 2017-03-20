@@ -131,7 +131,7 @@ public class DataUploadResourceIntTest {
 
         Assessment assessment = new Assessment();
         assessment.setType(Assessment.AssessmentType.WORK);
-        assessment.setBase("Good");
+        assessment.setCode("Good");
         assessment.setComments("Need to be faster");
         action1.setAssessment(assessment);
 
@@ -159,7 +159,7 @@ public class DataUploadResourceIntTest {
 
         Assessment assessment2 = new Assessment();
         assessment2.setType(Assessment.AssessmentType.WORK);
-        assessment2.setBase("Bad");
+        assessment2.setCode("Bad");
         assessment2.setComments("Need to be super faster");
         action2.setAssessment(assessment2);
 

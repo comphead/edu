@@ -4,16 +4,16 @@ package org.cmpd.edu.model;
  * Created by ovoievodin on 27.12.2016.
  */
 public class Assessment {
-    private String base;
+    private String code;
     private String comments;
     private AssessmentType type;
 
-    public String getBase() {
-        return base;
+    public String getCode() {
+        return code;
     }
 
-    public void setBase(String base) {
-        this.base = base;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getComments() {
@@ -33,6 +33,10 @@ public class Assessment {
     }
 
     public enum AssessmentType {
-        WORK
+        WORK,
+        EXAM,
+        BEHAVIOR,
+        HOMEWORK,
+        CLASSWORK
     }
 }

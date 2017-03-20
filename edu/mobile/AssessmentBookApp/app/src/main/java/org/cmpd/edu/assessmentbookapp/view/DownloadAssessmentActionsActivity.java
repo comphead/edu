@@ -13,6 +13,10 @@ import org.cmpd.edu.assessmentbookapp.R;
 import org.cmpd.edu.assessmentbookapp.common.GenericActivity;
 import org.cmpd.edu.assessmentbookapp.common.Utils;
 import org.cmpd.edu.assessmentbookapp.presenter.AssessmentPresenter;
+import org.cmpd.edu.model.AssessmentAction;
+import org.cmpd.edu.model.StaticDataContainer;
+
+import java.util.List;
 
 public class DownloadAssessmentActionsActivity
         extends GenericActivity<MVP.RequiredViewOps,
@@ -103,6 +107,12 @@ public class DownloadAssessmentActionsActivity
     }
 
     @Override
-    public void displayResults(Uri directoryPathname) {
+    public void displayResults(List<AssessmentAction> assessmentActions) {
+
+    }
+
+    @Override
+    public void setStaticData(StaticDataContainer staticDataContainer) {
+
     }
 }

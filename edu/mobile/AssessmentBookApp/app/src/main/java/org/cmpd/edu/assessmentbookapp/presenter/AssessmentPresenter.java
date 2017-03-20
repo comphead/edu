@@ -2,6 +2,7 @@ package org.cmpd.edu.assessmentbookapp.presenter;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Handler;
 
 import org.cmpd.edu.assessmentbookapp.MVP;
 import org.cmpd.edu.assessmentbookapp.R;
@@ -40,6 +41,7 @@ public class AssessmentPresenter
      */
     private WeakReference<MVP.RequiredViewOps> mView;
     private Retrofit client;
+    private final Handler mDisplayHandler = new Handler();
 
     /**
      * Constructor will choose either the Started Service or Bound
@@ -115,8 +117,12 @@ public class AssessmentPresenter
         Call<List<AssessmentAction>> assessmentCall = client.create(AssessmentAPI.class).getAssessmentActions();
         assessmentCall.enqueue(new Callback<List<AssessmentAction>>() {
             @Override
-            public void onResponse(Call<List<AssessmentAction>> call, Response<List<AssessmentAction>> response) {
-
+            public void onResponse(Call<List<AssessmentAction>> call, final Response<List<AssessmentAction>> response) {
+                mDisplayHandler.post(new Runnable() {
+                    public void run() {
+                        mView.get().displayResults(response.body());
+                    }
+                });
             }
 
             @Override
@@ -128,8 +134,12 @@ public class AssessmentPresenter
         Call<StaticDataContainer> staticDataCall = client.create(StaticDataAPI.class).getStaticDataContainer();
         staticDataCall.enqueue(new Callback<StaticDataContainer>() {
             @Override
-            public void onResponse(Call<StaticDataContainer> call, Response<StaticDataContainer> response) {
-
+            public void onResponse(Call<StaticDataContainer> call, final Response<StaticDataContainer> response) {
+                mDisplayHandler.post(new Runnable() {
+                    public void run() {
+                        mView.get().setStaticData(response.body());
+                    }
+                });
             }
 
             @Override
@@ -147,15 +157,6 @@ public class AssessmentPresenter
     public void onProcessingComplete(Uri url,
                                      Uri pathToImageFile) {
     }
-
-    /**
-     * Returns true if all the downloads have completed, else false.
-     */
-
-
-    /**
-     * Returns true if there are any downloads in progress, else false.
-     */
 
     /**
      * Return the Activity context.
